@@ -6,8 +6,6 @@ var command = args.Length == 0 ? "scoreboard" : args[0].ToLowerInvariant();
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 using var quiet = ConsoleNoiseFilter.Install();   // FunkyORM 3.10.0 debug line; see FUNKYORM_FEEDBACK.md
-Console.WriteLine($"Switchback — {SwitchbackConnection.Describe(connectionString)}");
-Console.WriteLine();
 
 DemoOptions options;
 try
@@ -24,6 +22,9 @@ catch (ArgumentException ex)
 
 try
 {
+    Console.WriteLine($"Switchback — {SwitchbackConnection.Describe(connectionString)}");
+    Console.WriteLine();
+
     switch (command)
     {
         case "seed":
@@ -64,8 +65,8 @@ try
 }
 catch (Exception ex) when (ex is InvalidOperationException or ArgumentException)
 {
-    // The database is not the seed (SwitchbackDatabase.EnsureReadyAsync), or the page is impossible
-    // (Paging.Validate): say so, without a stack trace.
+    // The database is not the seed (SwitchbackDatabase.EnsureReadyAsync), the page is impossible
+    // (Paging.Validate), or the connection string will not parse: say so, without a stack trace.
     Console.WriteLine(ex.Message);
     return 1;
 }

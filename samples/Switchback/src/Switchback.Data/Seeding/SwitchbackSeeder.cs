@@ -89,38 +89,37 @@ public static class SwitchbackSeeder
 
         deleted += await ClearTableAsync(db, ct,
             $"DELETE FROM [Orders]",
-            $"SELECT CAST(IDENT_CURRENT('Orders') AS int) AS [Value]",
+            $"SELECT CASE WHEN last_value IS NULL THEN 0 ELSE 1 END AS [Value] FROM sys.identity_columns WHERE object_id = OBJECT_ID('Orders')",
             $"DBCC CHECKIDENT ('Orders', RESEED, 0)");
 
         deleted += await ClearTableAsync(db, ct,
             $"DELETE FROM [Addresses]",
-            $"SELECT CAST(IDENT_CURRENT('Addresses') AS int) AS [Value]",
+            $"SELECT CASE WHEN last_value IS NULL THEN 0 ELSE 1 END AS [Value] FROM sys.identity_columns WHERE object_id = OBJECT_ID('Addresses')",
             $"DBCC CHECKIDENT ('Addresses', RESEED, 0)");
 
         deleted += await ClearTableAsync(db, ct,
             $"DELETE FROM [Customers]",
-            $"SELECT CAST(IDENT_CURRENT('Customers') AS int) AS [Value]",
+            $"SELECT CASE WHEN last_value IS NULL THEN 0 ELSE 1 END AS [Value] FROM sys.identity_columns WHERE object_id = OBJECT_ID('Customers')",
             $"DBCC CHECKIDENT ('Customers', RESEED, 0)");
 
         deleted += await ClearTableAsync(db, ct,
             $"DELETE FROM [Countries]",
-            $"SELECT CAST(IDENT_CURRENT('Countries') AS int) AS [Value]",
+            $"SELECT CASE WHEN last_value IS NULL THEN 0 ELSE 1 END AS [Value] FROM sys.identity_columns WHERE object_id = OBJECT_ID('Countries')",
             $"DBCC CHECKIDENT ('Countries', RESEED, 0)");
 
         if (deleted > 0)
             progress?.Invoke($"Cleared {deleted:N0} rows from Orders, Addresses, Customers and Countries.");
     }
 
-    // RESEED 0 makes the next identity 1 on a table that has ever had rows, but 0 on one that never has.
-    // So the identity is restarted only when the table had rows now, or had some before (the identity moved).
-    // Returns the number of rows deleted.
+    // RESEED 0 makes the next identity 1 on a table that has ever had a row, but 0 on one that never has.
+    // sys.identity_columns.last_value is NULL exactly until the first insert, so the identity is restarted
+    // only for a table with a history. Returns the number of rows deleted.
     private static async Task<int> ClearTableAsync(SwitchbackDbContext db, CancellationToken ct,
-        FormattableString delete, FormattableString currentIdentity, FormattableString reseed)
+        FormattableString delete, FormattableString hadRows, FormattableString reseed)
     {
         var deleted = await db.Database.ExecuteSqlAsync(delete, ct);
-        var identity = await db.Database.SqlQuery<int>(currentIdentity).SingleAsync(ct);
 
-        if (deleted > 0 || identity > 1)
+        if (await db.Database.SqlQuery<int>(hadRows).SingleAsync(ct) == 1)
             await db.Database.ExecuteSqlAsync(reseed, ct);
 
         return deleted;
