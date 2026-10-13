@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The service gate: the only application code that talks to a data-access library. -->
+  <ItemGroup>
+    <ProjectReference Include="../Switchback.Data/Switchback.Data.csproj" />
+    <ProjectReference Include="../Switchback.Infrastructure.Persistence.Entities/Switchback.Infrastructure.Persistence.Entities.csproj" />
+    <ProjectReference Include="../Switchback.Shared.Contracts/Switchback.Shared.Contracts.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Funcular.Data.Orm" />
+  </ItemGroup>
+</Project>

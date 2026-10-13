@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Switchback.Web": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "orders/recent",
+      "applicationUrl": "http://localhost:5080",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

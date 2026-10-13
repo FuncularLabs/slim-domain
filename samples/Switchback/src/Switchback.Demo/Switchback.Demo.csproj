@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Console runner: seeds the database and prints the side-by-side scoreboard. This is the F5 project. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Switchback.Demo</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Switchback.Application.Services/Switchback.Application.Services.csproj" />
+    <ProjectReference Include="../Switchback.Data/Switchback.Data.csproj" />
+    <ProjectReference Include="../Switchback.Infrastructure.Persistence.Entities/Switchback.Infrastructure.Persistence.Entities.csproj" />
+    <ProjectReference Include="../Switchback.Shared.Contracts/Switchback.Shared.Contracts.csproj" />
+  </ItemGroup>
+</Project>

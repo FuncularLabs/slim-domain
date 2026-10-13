@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Canonical slim entities and read models for the FunkyORM slice. -->
+  <ItemGroup>
+    <PackageReference Include="Funcular.Data.Orm" />
+  </ItemGroup>
+</Project>

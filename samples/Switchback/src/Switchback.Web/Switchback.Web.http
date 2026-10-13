@@ -1,0 +1,13 @@
+@host = http://localhost:5080
+
+### The converted slice (FunkyORM read model)
+GET {{host}}/orders/recent?page=0
+
+### Filtered on a joined column
+GET {{host}}/orders/recent?page=0&country=Canada
+
+### The "before" world: EF Include chain
+GET {{host}}/orders/recent/ef-include?page=0
+
+### The EF fix: projection
+GET {{host}}/orders/recent/ef-projection?page=0

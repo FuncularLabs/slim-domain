@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="960" height="560" role="img" aria-labelledby="title">
+  <title id="title">Before — EF Core, navigation properties, Include chain</title>
+  <style>
+    .ui    { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; }
+    .mono  { font-family: 'Cascadia Code', Consolas, monospace; font-variant-ligatures: none; }
+    .h1    { font-size: 20px; font-weight: 700; fill: #1f2937; }
+    .ent   { fill: #f8fafc; stroke: #94a3b8; stroke-width: 1.5; }
+    .name  { font-size: 14px; font-weight: 700; fill: #1f2937; }
+    .cols  { font-size: 12px; fill: #64748b; }
+    .nav   { fill: none; stroke: #475569; stroke-width: 1.5; }
+    .lbl   { font-size: 12px; fill: #475569; }
+    .cap   { font-size: 12px; font-style: italic; fill: #64748b; }
+    .box   { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.5; }
+    .kick  { font-size: 11px; font-weight: 600; letter-spacing: 1px; fill: #64748b; }
+    .code  { font-size: 13px; fill: #1f2937; }
+    .inc   { fill: #b23b2e; }
+    .strip { fill: #f8dcd8; stroke: #b23b2e; stroke-width: 2.5; }
+    .sum   { font-size: 17px; font-weight: 700; fill: #8a2a20; }
+  </style>
+  <defs>
+    <marker id="arrow-solid" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-dotted" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M1,1 L9,5 L1,9 Z" fill="#ffffff" stroke="#3b76b8" stroke-width="1.5" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="560" fill="#ffffff"/>
+  <text class="ui h1" x="30" y="38">Before — EF Core, navigation properties, Include chain</text>
+
+  <!-- Entity graph -->
+  <g class="ui">
+    <rect class="ent" x="50" y="80" width="160" height="60" rx="8"/>
+    <text class="name" x="130" y="105" text-anchor="middle">Order</text>
+    <text class="cols" x="130" y="124" text-anchor="middle">13 columns</text>
+
+    <rect class="ent" x="350" y="80" width="160" height="60" rx="8"/>
+    <text class="name" x="430" y="105" text-anchor="middle">Customer</text>
+    <text class="cols" x="430" y="124" text-anchor="middle">9 columns</text>
+
+    <rect class="ent" x="350" y="320" width="160" height="60" rx="8"/>
+    <text class="name" x="430" y="345" text-anchor="middle">Address</text>
+    <text class="cols" x="430" y="364" text-anchor="middle">10 columns</text>
+
+    <rect class="ent" x="50" y="320" width="160" height="60" rx="8"/>
+    <text class="name" x="130" y="345" text-anchor="middle">Country</text>
+    <text class="cols" x="130" y="364" text-anchor="middle">4 columns</text>
+  </g>
+
+  <!-- Navigation properties (solid arrows) -->
+  <g class="nav">
+    <line x1="210" y1="98"  x2="350" y2="98"  marker-end="url(#arrow-solid)"/>
+    <line x1="350" y1="122" x2="210" y2="122" marker-end="url(#arrow-solid)"/>
+    <line x1="430" y1="140" x2="430" y2="320" marker-end="url(#arrow-solid)"/>
+    <line x1="350" y1="350" x2="210" y2="350" marker-end="url(#arrow-solid)"/>
+    <line x1="160" y1="140" x2="400" y2="320" marker-end="url(#arrow-solid)"/>
+  </g>
+  <g class="ui lbl">
+    <text x="280" y="92"  text-anchor="middle">Customer</text>
+    <text x="280" y="137" text-anchor="middle">Orders</text>
+    <text x="438" y="234">Addresses</text>
+    <text x="280" y="343" text-anchor="middle">Country</text>
+    <text x="268" y="247" text-anchor="end">ShipToAddress</text>
+  </g>
+  <text class="ui cap" x="280" y="412" text-anchor="middle">navigation properties form an object graph</text>
+
+  <!-- Query -->
+  <rect class="box" x="560" y="140" width="370" height="176" rx="8"/>
+  <text class="ui kick" x="576" y="162">QUERY</text>
+  <g class="mono code">
+    <text x="576" y="188">db.Orders</text>
+    <text class="inc" x="592" y="208">.Include(o =&gt; o.Customer)</text>
+    <text class="inc" x="592" y="228">.Include(o =&gt; o.ShipToAddress)</text>
+    <text class="inc" x="623" y="248">.ThenInclude(a =&gt; a.Country)</text>
+    <text x="592" y="268">.OrderByDescending(o =&gt; o.OrderedUtc)</text>
+    <text x="592" y="288">.Skip(page * 50).Take(50)</text>
+  </g>
+
+  <!-- Result -->
+  <rect class="strip" x="30" y="470" width="900" height="52" rx="8"/>
+  <text class="ui sum" x="480" y="502" text-anchor="middle">36 columns loaded · 5 used · 166 objects tracked</text>
+</svg>

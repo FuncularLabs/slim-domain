@@ -1,0 +1,35 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  switchback:
+    name: Build and test the Switchback sample
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: samples/Switchback
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: samples/Switchback/global.json
+
+      # The sample uses SQL Server Express LocalDB, which the Windows runners ship with.
+      - name: Start LocalDB
+        run: |
+          sqllocaldb start MSSQLLocalDB
+          sqllocaldb info MSSQLLocalDB
+
+      - name: Build (warnings are errors)
+        run: dotnet build Switchback.slnx -c Release
+
+      - name: Scoreboard
+        run: dotnet run --project src/Switchback.Demo -c Release --no-build -- scoreboard
+
+      - name: Tests
+        run: dotnet test Switchback.slnx -c Release

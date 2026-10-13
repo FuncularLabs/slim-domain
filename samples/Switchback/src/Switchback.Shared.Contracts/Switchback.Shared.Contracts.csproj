@@ -1,0 +1,3 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Boundary contracts. Depends on nothing. -->
+</Project>

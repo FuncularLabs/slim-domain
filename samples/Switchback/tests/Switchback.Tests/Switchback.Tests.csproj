@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="NetArchTest.Rules" />
+    <PackageReference Include="Funcular.Data.Orm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/Switchback.Application.Services/Switchback.Application.Services.csproj" />
+    <ProjectReference Include="../../src/Switchback.Data/Switchback.Data.csproj" />
+    <ProjectReference Include="../../src/Switchback.Demo/Switchback.Demo.csproj" />
+    <ProjectReference Include="../../src/Switchback.Infrastructure.Persistence.Entities/Switchback.Infrastructure.Persistence.Entities.csproj" />
+    <ProjectReference Include="../../src/Switchback.Shared.Contracts/Switchback.Shared.Contracts.csproj" />
+    <ProjectReference Include="../../src/Switchback.Web/Switchback.Web.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <!-- Minimal API. Knows services and contracts; never a data-access library. -->
+  <ItemGroup>
+    <ProjectReference Include="../Switchback.Application.Services/Switchback.Application.Services.csproj" />
+    <ProjectReference Include="../Switchback.Shared.Contracts/Switchback.Shared.Contracts.csproj" />
+  </ItemGroup>
+</Project>

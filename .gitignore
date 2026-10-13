@@ -1,0 +1,18 @@
+# Build output
+bin/
+obj/
+*.user
+*.suo
+.vs/
+.idea/
+*.swp
+TestResults/
+BenchmarkDotNet.Artifacts/
+
+# Local database files (the sample creates its database in LocalDB; keep any .mdf out of the repo)
+*.mdf
+*.ldf
+
+# OS
+.DS_Store
+Thumbs.db

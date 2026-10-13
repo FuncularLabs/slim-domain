@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="960" height="560" role="img" aria-labelledby="title">
+  <title id="title">After — Slim Domain with FunkyORM</title>
+  <style>
+    .ui     { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; }
+    .mono   { font-family: 'Cascadia Code', Consolas, monospace; font-variant-ligatures: none; }
+    .h1     { font-size: 20px; font-weight: 700; fill: #1f2937; }
+    .ent    { fill: #f8fafc; stroke: #94a3b8; stroke-width: 1.5; }
+    .name   { font-size: 14px; font-weight: 700; fill: #1f2937; }
+    .cols   { font-size: 12px; fill: #64748b; }
+    .rmfill { fill: #eaf2fb; }
+    .rmhead { fill: #3b76b8; }
+    .rmline { fill: none; stroke: #3b76b8; stroke-width: 2; }
+    .rmtitle{ font-size: 13px; font-weight: 700; fill: #ffffff; }
+    .mem    { font-size: 12.5px; fill: #1f2937; }
+    .attr   { fill: #1e4e85; }
+    .hop    { fill: #64748b; }
+    .join   { fill: none; stroke: #3b76b8; stroke-width: 1.5; stroke-dasharray: 4 3; }
+    .jl     { font-size: 12px; font-weight: 600; fill: #3b76b8; }
+    .cap    { font-size: 12px; font-style: italic; fill: #64748b; }
+    .box    { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.5; }
+    .kick   { font-size: 11px; font-weight: 600; letter-spacing: 1px; fill: #64748b; }
+    .code   { font-size: 13px; fill: #1f2937; }
+    .strip  { fill: #e3f3e8; stroke: #3d8f5f; stroke-width: 1.5; }
+    .sum    { font-size: 17px; font-weight: 700; fill: #1f6b3d; }
+  </style>
+  <defs>
+    <marker id="arrow-solid" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-dotted" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M1,1 L9,5 L1,9 Z" fill="#ffffff" stroke="#3b76b8" stroke-width="1.5" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="560" fill="#ffffff"/>
+  <text class="ui h1" x="30" y="38">After — Slim Domain with FunkyORM</text>
+
+  <!-- Read model (the star) -->
+  <rect class="rmfill" x="30" y="62" width="500" height="170" rx="8"/>
+  <path class="rmhead" d="M38,62 H522 A8,8 0 0 1 530,70 V92 H30 V70 A8,8 0 0 1 38,62 Z"/>
+  <rect class="rmline" x="30" y="62" width="500" height="170" rx="8"/>
+  <text class="mono rmtitle" x="46" y="82" xml:space="preserve">RecentOrderRow : IReadModel  [Table("Orders")]</text>
+  <g class="mono mem">
+    <text x="46" y="116">Id, OrderNumber, OrderedUtc, Total</text>
+    <text x="46" y="139">CustomerId</text>
+    <text class="attr" x="190" y="139">[RemoteLink(CustomerEntity)]</text>
+    <text x="46" y="162">ShipToAddressId</text>
+    <text class="attr" x="190" y="162">[RemoteLink(AddressEntity)]</text>
+    <text x="46" y="185">CustomerName</text>
+    <text class="attr" x="190" y="185">← Customers.Name</text>
+    <text class="hop" x="430" y="185">(1 hop)</text>
+    <text x="46" y="208">ShipToCountryName</text>
+    <text class="attr" x="190" y="208">← Addresses → Countries.Name</text>
+    <text class="hop" x="430" y="208">(2 hops)</text>
+  </g>
+
+  <!-- Query -->
+  <rect class="box" x="560" y="62" width="370" height="112" rx="8"/>
+  <text class="ui kick" x="576" y="84">QUERY</text>
+  <g class="mono code">
+    <text x="576" y="110">provider.Query&lt;RecentOrderRow&gt;()</text>
+    <text x="592" y="130">.OrderByDescending(r =&gt; r.OrderedUtc)</text>
+    <text x="592" y="150">.Skip(page * 50).Take(50)</text>
+  </g>
+
+  <!-- Joins happen only when RecentOrderRow is queried (dotted arrows) -->
+  <g class="join">
+    <line x1="365" y1="232" x2="365" y2="330" marker-end="url(#arrow-dotted)"/>
+    <polyline points="530,200 595,200 595,330" marker-end="url(#arrow-dotted)"/>
+    <line x1="670" y1="358" x2="750" y2="358" marker-end="url(#arrow-dotted)"/>
+  </g>
+  <g class="ui jl">
+    <text x="373" y="288">LEFT JOIN</text>
+    <text x="603" y="288">LEFT JOIN</text>
+    <text x="710" y="349" text-anchor="middle">LEFT JOIN</text>
+  </g>
+
+  <!-- Canonical entities: one class per table, no arrows between them -->
+  <g class="ui">
+    <rect class="ent" x="60" y="330" width="150" height="56" rx="8"/>
+    <text class="name" x="135" y="354" text-anchor="middle">OrderEntity</text>
+    <text class="cols" x="135" y="373" text-anchor="middle">13 columns</text>
+
+    <rect class="ent" x="290" y="330" width="150" height="56" rx="8"/>
+    <text class="name" x="365" y="354" text-anchor="middle">CustomerEntity</text>
+    <text class="cols" x="365" y="373" text-anchor="middle">9 columns</text>
+
+    <rect class="ent" x="520" y="330" width="150" height="56" rx="8"/>
+    <text class="name" x="595" y="354" text-anchor="middle">AddressEntity</text>
+    <text class="cols" x="595" y="373" text-anchor="middle">10 columns</text>
+
+    <rect class="ent" x="750" y="330" width="150" height="56" rx="8"/>
+    <text class="name" x="825" y="354" text-anchor="middle">CountryEntity</text>
+    <text class="cols" x="825" y="373" text-anchor="middle">4 columns</text>
+  </g>
+  <text class="ui cap" x="480" y="412" text-anchor="middle">one class per table, no navigation properties</text>
+
+  <!-- Result -->
+  <rect class="strip" x="30" y="470" width="900" height="52" rx="8"/>
+  <text class="ui sum" x="480" y="502" text-anchor="middle">8 columns loaded · 5 used · 0 objects tracked</text>
+</svg>

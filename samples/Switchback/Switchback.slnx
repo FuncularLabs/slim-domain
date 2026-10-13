@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Switchback.Demo/Switchback.Demo.csproj" />
+    <Project Path="src/Switchback.Web/Switchback.Web.csproj" />
+    <Project Path="src/Switchback.Application.Services/Switchback.Application.Services.csproj" />
+    <Project Path="src/Switchback.Data/Switchback.Data.csproj" />
+    <Project Path="src/Switchback.Infrastructure.Persistence.Entities/Switchback.Infrastructure.Persistence.Entities.csproj" />
+    <Project Path="src/Switchback.Shared.Contracts/Switchback.Shared.Contracts.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Switchback.Tests/Switchback.Tests.csproj" />
+  </Folder>
+</Solution>

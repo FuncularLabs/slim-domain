@@ -1,0 +1,28 @@
+{
+  "profiles": {
+    "scoreboard": {
+      "commandName": "Project",
+      "commandLineArgs": "scoreboard"
+    },
+    "scoreboard --country Canada": {
+      "commandName": "Project",
+      "commandLineArgs": "scoreboard --country Canada"
+    },
+    "sql include": {
+      "commandName": "Project",
+      "commandLineArgs": "sql include"
+    },
+    "sql projection": {
+      "commandName": "Project",
+      "commandLineArgs": "sql projection"
+    },
+    "sql funky": {
+      "commandName": "Project",
+      "commandLineArgs": "sql funky"
+    },
+    "reset": {
+      "commandName": "Project",
+      "commandLineArgs": "reset"
+    }
+  }
+}
