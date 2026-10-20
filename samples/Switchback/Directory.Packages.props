@@ -1,6 +1,14 @@
 <Project>
   <!-- Every package version lives here (central package management). Projects reference packages without versions. -->
+  <PropertyGroup>
+    <!-- A version below also pins the same package wherever it arrives transitively. -->
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
   <ItemGroup>
+    <!-- Not referenced directly. Microsoft.Data.SqlClient (through EF Core and FunkyORM) brings 9.0.x, which
+         CVE-2026-84008 and CVE-2026-70162 (2026-10-13) affect; the warnings-as-errors build fails on them.
+         10.0.13 is the patched release for net10.0. Remove this line once SqlClient depends on a patched version. -->
+    <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
     <PackageVersion Include="Funcular.Data.Orm" Version="3.10.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12" />
