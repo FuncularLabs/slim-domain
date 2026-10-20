@@ -78,7 +78,7 @@ CONTRACTS_PROJECT:          <Solution>.Shared.Contracts
 
 ### 2.4 Reads
 - MUST return a shape carrying only what the operation uses: the canonical entity for a single-row operation; otherwise a **detail entity**, a view, or a projection.
-- Detail entities MUST be `sealed`, MUST carry an `IReadModel` marker (or the library's read-only attribute), and NEVER reach a write path.
+- Detail entities MUST be `sealed`, MUST carry an `IReadModel` marker, and NEVER reach a write path.
 - Related data is loaded **explicitly** (one narrow query per shape, composed in the service) or via attribute/view projections — never through ambient navigation properties or lazy loading.
 - A column that must never leave the service is protected by **absence**: the read type has no member for it.
 
