@@ -22,9 +22,8 @@ Format: one entry per finding, newest first, with its current status.
 
 ## 2026-10-12 — `Generated ORDER BY clause: …` printed to stdout
 
-- **Status: fixed; silent from the 3.12.0 package.** The fix is in the 3.11.0 source (commit `7fe80da`), but the
-  3.11.0 package on NuGet was built before it and still prints the lines; 3.12.0 and 3.12.1 print nothing (verified
-  2026-10-26). The sample's `ConsoleNoiseFilter` was removed on 2026-10-26.
+- **Status: fixed in 3.11.0.** Verified on the published 3.11.0, 3.12.0 and 3.12.1 packages (nothing written during a
+  query; 2026-10-26). The sample's `ConsoleNoiseFilter` was removed on 2026-10-26.
 - **Version / provider:** Funcular.Data.Orm 3.10.0, SQL Server.
 - **Construct:** any ordered LINQ query, for example
   `provider.Query<RecentOrderRow>().OrderByDescending(r => r.OrderedUtc).ThenByDescending(r => r.Id).Skip(0).Take(50).ToList()`.
