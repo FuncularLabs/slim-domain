@@ -1,6 +1,6 @@
 # Slim Domain — agent guidance for structuring domains in .NET solutions
 
-**Source:** *Slim Domain: A Domain-Structuring Pattern for .NET — Persistence Contracts Separated from Business Behavior*, v1.0-rc1 (Funcular Labs, October 2026). This file is a compressed, agent-oriented digest of that paper. When this file and the paper disagree, the paper wins.
+**Source:** *Slim Domain: A Domain-Structuring Pattern for .NET That Leaves Inadvertent Technical Debt Nowhere to Accrue*, v1.0-rc4 (Funcular Labs, October 2026). This file is a compressed, agent-oriented digest of that paper. When this file and the paper disagree, the paper wins.
 
 **How to use:** paste into your repository's agent instructions (`CLAUDE.md`, `.github/copilot-instructions.md`, `AGENTS.md`, or equivalent), fill in §0, and delete any section that does not apply. Everything below is written as instructions to a coding agent working in a .NET solution.
 
@@ -31,7 +31,7 @@ CONTRACTS_PROJECT:          <Solution>.Shared.Contracts
 
 ## 1. What Slim Domain is — and is not
 
-**Purpose.** Cut data access down to what is actually used or displayed, and make that the path of least resistance rather than an act of discipline.
+**Purpose.** Cut data access down to what is actually used or displayed, and make that the path of least resistance rather than an act of discipline. In technical-debt terms: make the common forms of *inadvertent* debt — over-fetching, parallel shapes, ambient persistence, scattered cross-cutting rules — structurally unavailable, so the interest paid on cross-cutting change stays bounded as the codebase grows.
 
 **Five tenets** (quote these in design reviews):
 1. **Flatten to the use case.** Eschew large — ideally any — object graphs; shape each read to the immediate need.
@@ -48,13 +48,26 @@ CONTRACTS_PROJECT:          <Solution>.Shared.Contracts
 
 **It is NOT:** an ORM or library; an application architecture; a ban on relationships (navigation is just not the organizing principle of retrieval); a ban on DTOs (they belong at boundaries); an anemic domain model (behavior lives on business objects); a repository mandate or ban; a replacement for strategic DDD.
 
+**The technical-debt lens** (the paper's §3.4). Each tenet closes a debt channel; use this when justifying a rule to a stakeholder:
+
+| Tenet / rule | Debt channel closed | Interest avoided |
+|---|---|---|
+| Flatten to the use case | Over-fetching that accretes screen by screen | Latency and payload paid on every request |
+| Minimal canonical entities | Entity accretion (screen members, `[NotMapped]` piles) | Every schema change negotiated with every consumer |
+| Inherit within a boundary; DTO warrant test | Parallel shapes kept in sync by hand | One domain change touches N copies plus mappers |
+| Nouns and verbs apart | Ambient persistence | A cross-cutting persistence change touches hundreds of files |
+| Generator contract; fitness functions | Architecture erosion, silent schema drift | Drift found late, at runtime, by someone else |
+
+Two limits the agent must respect when making this argument: the pattern prevents *inadvertent* debt (it cannot stop a team borrowing deliberately under deadline pressure), and schema churn is **parity, not deficiency** — every persistence strategy pays it somewhere; Slim Domain pays it at compile time in the consuming layer, which is the cheapest place.
+
 ---
 
 ## 2. Rules (MUST / SHOULD / NEVER)
 
 ### 2.1 Canonical entities
 - MUST be one class per table, containing only that table's columns.
-- MUST have no behavior, no navigation properties, no mapping attributes unless a name deviates from convention (then use standard `System.ComponentModel.DataAnnotations`: `[Table]`, `[Column]`, `[Key]`, `[NotMapped]`).
+- MUST have no behavior and no navigation properties.
+- MUST carry `[Table("<table>")]`: the `Entity` suffix means the class name never matches the table name, so never rely on the library's name inference for a canonical class (or drop the suffix — but the naming convention and the inference rule must agree). Otherwise no mapping attributes unless a column name deviates from convention (then standard `System.ComponentModel.DataAnnotations`: `[Column]`, `[Key]`, `[NotMapped]`).
 - MUST NOT be hand-edited when generated; hand-written members go in a sibling partial file. Treat a regeneration diff as a contract change.
 - SHOULD carry a `Version` column where writes can contend, and soft-delete / audit columns as the schema dictates (see §2.6).
 - NEVER add a screen's or report's needs to a canonical entity. Make a detail entity instead (§2.4).
@@ -126,6 +139,7 @@ Input = live schema or committed snapshot. Output = generator-owned partial per 
 
 ### 4.1 Canonical entity (generated) and companion constants (hand-written)
 ```csharp
+[Table("account")]                             // always: the Entity suffix ≠ the table name
 public class AccountEntity                      // one table, no behavior, no navigation
 {
     public int Id { get; set; }
@@ -282,4 +296,4 @@ Further fitness functions worth adding as analyzer rules: service methods above 
 
 ---
 
-*Digest of Slim Domain v1.0-rc1. The paper carries the full argument, the evidence and its limits, twenty-two listings, and the review methodology; consult it before deviating from any rule above.*
+*Digest of Slim Domain v1.0-rc4. The paper carries the full argument, the evidence and its limits, twenty-two listings, and the review methodology; consult it before deviating from any rule above.*
