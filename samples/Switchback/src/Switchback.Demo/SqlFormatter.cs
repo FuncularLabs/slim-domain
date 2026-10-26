@@ -3,8 +3,8 @@ using System.Text.RegularExpressions;
 namespace Switchback.Demo;
 
 /// <summary>
-/// Makes a statement readable on screen without changing its tokens. FunkyORM 3.10 puts FROM and every JOIN
-/// on one line and splits OFFSET from FETCH; this gives each JOIN its own line and rejoins the page clause.
+/// Makes a statement readable on screen without changing its tokens. FunkyORM puts FROM and every JOIN on
+/// one line and splits OFFSET from FETCH; this gives each JOIN its own line and rejoins the page clause.
 /// EF Core formats its own SQL, and that text passes through unchanged.
 /// </summary>
 public static partial class SqlFormatter

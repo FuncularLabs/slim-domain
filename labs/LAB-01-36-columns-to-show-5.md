@@ -111,8 +111,8 @@ dotnet run --project src/Switchback.Demo -- sql funky
 Open `RecentOrdersService.cs` and `ServiceBase.cs`.
 
 - The provider is private to the base. A service never touches the library directly.
-- The operator order is `Where` → `OrderBy`/`ThenBy` → `Skip` → `Take` → `ToList()`. FunkyORM 3.10
-  rejects anything after `Skip`/`Take`, by design.
+- The operator order is `Where` → `OrderBy`/`ThenBy` → `Skip` → `Take` → `ToList()`. FunkyORM
+  rejects filtering, ordering or aggregating after `Skip`/`Take`, by design.
 - The service returns `RecentOrderRow`, not the contract. The mapping to `RecentOrderResponse` happens once,
   at the edge (`RecentOrderRowExtensions.ToResponse`, called from the web endpoint and the scoreboard),
   because the row carries internal ids that must not be published.

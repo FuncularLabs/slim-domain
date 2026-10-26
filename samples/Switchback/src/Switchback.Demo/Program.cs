@@ -5,7 +5,6 @@ var connectionString = SwitchbackConnection.Resolve();
 var command = args.Length == 0 ? "scoreboard" : args[0].ToLowerInvariant();
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
-using var quiet = ConsoleNoiseFilter.Install();   // FunkyORM 3.10.0 debug line; see FUNKYORM_FEEDBACK.md
 
 DemoOptions options;
 try

@@ -167,12 +167,11 @@ else's), the sample refuses to run and says so; `reset` is the way back.
 | `A network-related or instance-specific error…` on `(localdb)\MSSQLLocalDB` | LocalDB is not installed, or the instance is missing. Run `sqllocaldb info`; create one with `sqllocaldb create MSSQLLocalDB`. Or point `SWITCHBACK_CONNECTION` at another SQL Server. |
 | `Logon failed for login … due to trigger execution` (error 17892) | Your LocalDB instance has a server logon trigger that rejects connections. That is machine-specific; use another instance (`sqllocaldb create Switchback -s`, then set `SWITCHBACK_CONNECTION` to `Server=(localdb)\Switchback;…`) or another SQL Server. |
 | `Database 'Switchback' already exists` after deleting the `.mdf` by hand | LocalDB still has the name registered. `sqlcmd -S "(localdb)\MSSQLLocalDB" -Q "DROP DATABASE Switchback"`, then run again. |
-| `Generated ORDER BY clause: …` lines in the web console | A leftover debug line in FunkyORM 3.10.0 ([`FUNKYORM_FEEDBACK.md`](FUNKYORM_FEEDBACK.md)). Harmless; the scoreboard filters it. |
 | Seeding is slow | It inserts 115,000 rows through EF in batches; 15–30 seconds depending on the machine. It runs once. |
 
 ## Versions
 
-.NET 10 · EF Core 10.0.12 · FunkyORM (`Funcular.Data.Orm`) 3.10.0 · Bogus 35.6.5 · xUnit v3 · NetArchTest.
+.NET 10 · EF Core 10.0.12 · FunkyORM (`Funcular.Data.Orm`) 3.12.1 · Bogus 35.6.5 · xUnit v3 · NetArchTest.
 Package versions are pinned in `Directory.Packages.props`.
 
 FunkyORM is young and moving fast; the [FUNKYORM_FEEDBACK.md](FUNKYORM_FEEDBACK.md) file records what the

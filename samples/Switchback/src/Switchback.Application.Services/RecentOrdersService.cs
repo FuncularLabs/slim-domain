@@ -19,7 +19,7 @@ public sealed class RecentOrdersService(IOrmDataProvider provider) : ServiceBase
         if (shipToCountry is not null)
             query = query.Where(r => r.ShipToCountryName == shipToCountry);   // a filter on a joined column
 
-        // FunkyORM 3.10 operator order: Where → OrderBy/ThenBy → Skip → Take → materialize.
+        // FunkyORM operator order: Where → OrderBy/ThenBy → Skip → Take → materialize (nothing after the page).
         return query
             .OrderByDescending(r => r.OrderedUtc)
             .ThenByDescending(r => r.Id)

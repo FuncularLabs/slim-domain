@@ -29,8 +29,8 @@ CONTRACTS_PROJECT:          Switchback.Shared.Contracts
   The four tables have exactly 36 columns; the scoreboard, the tests and the labs depend on that number.
 - **The seed is deterministic** (`SwitchbackSeeder`: fixed seed, fixed reference date). Changing it changes
   every row hash quoted in the labs and videos. Do not change it without saying so.
-- **FunkyORM 3.10 operator order:** `Where` → `OrderBy`/`ThenBy` → `Skip` → `Take` → materialize. Nothing after
-  `Skip`/`Take`; no second `OrderBy`; no `Where` after a subset `Select`.
+- **FunkyORM operator order:** `Where` → `OrderBy`/`ThenBy` → `Skip` → `Take` → materialize. No filtering,
+  ordering or aggregating after `Skip`/`Take`; no second `OrderBy`; no `Where` after a subset `Select`.
 - **When FunkyORM surprises you,** do not work around it silently. Reproduce it in a test, mark the test
   `Skip = "FunkyORM: …"`, add an entry to `FUNKYORM_FEEDBACK.md`, and use a construct that works.
 - **The architecture tests are the gate.** Only `Switchback.Infrastructure.Persistence.*` and
