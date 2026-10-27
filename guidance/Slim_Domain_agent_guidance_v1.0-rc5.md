@@ -1,6 +1,6 @@
 # Slim Domain — agent guidance for structuring domains in .NET solutions
 
-**Source:** *Slim Domain: A Domain-Structuring Pattern for .NET That Leaves Inadvertent Technical Debt Nowhere to Accrue*, v1.0-rc4 (Funcular Labs, October 2026). This file is a compressed, agent-oriented digest of that paper. When this file and the paper disagree, the paper wins.
+**Source:** *Slim Domain: Debt-Proof by Design — A .NET domain pattern that cuts cognitive load and leaves technical debt nowhere to grow*, v1.0-rc5 (Funcular Labs, October 2026). This file is a compressed, agent-oriented digest of that paper. When this file and the paper disagree, the paper wins.
 
 **How to use:** paste into your repository's agent instructions (`CLAUDE.md`, `.github/copilot-instructions.md`, `AGENTS.md`, or equivalent), fill in §0, and delete any section that does not apply. Everything below is written as instructions to a coding agent working in a .NET solution.
 
@@ -296,4 +296,4 @@ Further fitness functions worth adding as analyzer rules: service methods above 
 
 ---
 
-*Digest of Slim Domain v1.0-rc4. The paper carries the full argument, the evidence and its limits, twenty-two listings, and the review methodology; consult it before deviating from any rule above.*
+*Digest of Slim Domain v1.0-rc5. The paper carries the full argument, the evidence and its limits, twenty-two listings, and the review methodology; consult it before deviating from any rule above.*

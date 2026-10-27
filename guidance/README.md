@@ -1,6 +1,6 @@
 # Slim Domain — agent guidance
 
-[`Slim_Domain_agent_guidance_v1.0-rc4.md`](Slim_Domain_agent_guidance_v1.0-rc4.md) is the paper compressed
+[`Slim_Domain_agent_guidance_v1.0-rc5.md`](Slim_Domain_agent_guidance_v1.0-rc5.md) is the paper compressed
 into instructions for a coding agent: the rules as MUST / SHOULD / NEVER, the decision procedures, the
 reference shapes, a pull-request checklist, and the anti-patterns to flag on sight.
 
@@ -19,7 +19,8 @@ The [Switchback sample](../samples/Switchback/) has a filled-in example: see its
 [`AGENTS.md`](../samples/Switchback/AGENTS.md).
 
 When this file and the paper disagree, the paper wins. The guidance is versioned with the paper; this copy
-matches v1.0-rc4 (it adds the technical-debt lens table and the `[Table]` rule for canonical entities).
+matches v1.0-rc5 (rc4 added the technical-debt lens table and the `[Table]` rule for canonical entities; rc5 changes
+only the paper's title page).
 
 ## License
 

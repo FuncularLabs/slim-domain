@@ -1,7 +1,6 @@
 # Slim Domain
 
-**A domain-structuring pattern for .NET: persistence contracts separated from business behavior, and the default
-paths to technical debt closed by construction.**
+**A .NET domain pattern that cuts cognitive load and leaves technical debt nowhere to grow.**
 
 Slim Domain cuts data access down to what each operation uses, and makes that the path of least resistance
 rather than an act of discipline. The canonical entity is the table and nothing more. Every read returns a
@@ -13,7 +12,7 @@ This repository is the pattern's public home. It holds three things:
 
 | | What | For whom |
 |---|---|---|
-| [**The paper**](paper/) | *Slim Domain: A Domain-Structuring Pattern for .NET That Leaves Inadvertent Technical Debt Nowhere to Accrue*, v1.0-rc4 (October 2026). The full argument, twenty-two listings, the evidence and its limits. **Open for peer review.** | Architects, reviewers, the curious |
+| [**The paper**](paper/) | *Slim Domain: Debt-Proof by Design*, v1.0-rc5 (October 2026). The full argument, twenty-two listings, the evidence and its limits. **Open for peer review.** | Architects, reviewers, the curious |
 | [**Agent guidance**](guidance/) | The paper compressed into instructions for a coding agent, ready to paste into `CLAUDE.md`, `AGENTS.md` or `copilot-instructions.md`. | Teams that build with agents |
 | [**The Switchback sample**](samples/Switchback/) | A .NET 10 solution that converts one feature slice of an EF Core application to FunkyORM the Slim Domain way, and measures the difference. Clone it, press F5. | Developers; the [labs](labs/) and the video series |
 
@@ -112,7 +111,7 @@ NEVER rules with a pull-request checklist.
 
 ## Peer review
 
-The paper is a release candidate: rc1 went public on 2026-10-02 and rc4 (2026-10-26) is the current revision. It
+The paper is a release candidate: rc1 went public on 2026-10-02 and rc5 (2026-10-26) is the current revision. It
 has been through adversarial review by AI reviewers (disclosed in its Appendix A) and not yet by people outside
 Funcular Labs.
 Counter-examples, prior art we missed, and holes in the evidence are the most useful things you can send.
@@ -130,8 +129,8 @@ a slice to the sample and a row to its scoreboard. The labs are also the outline
 
 | Component | Version |
 |---|---|
-| Paper | 1.0-rc4, 2026-10-26 ([what changed since rc1](paper/README.md#what-changed-since-rc1)) |
-| Agent guidance | 1.0-rc4 (matches the paper) |
+| Paper | 1.0-rc5, 2026-10-26 ([what changed since rc1](paper/README.md#what-changed-since-rc1)) |
+| Agent guidance | 1.0-rc5 (matches the paper) |
 | Switchback sample | .NET 10 · EF Core 10.0.12 · FunkyORM ([`Funcular.Data.Orm`](https://www.nuget.org/packages/Funcular.Data.Orm)) 3.12.1 |
 
 FunkyORM is the micro-ORM the sample uses for the Slim Domain side; it is [open source](https://github.com/FuncularLabs/Funcular.FunkyOrm)
@@ -144,5 +143,5 @@ Code, labs and diagrams: [MIT](LICENSE). The paper and the guidance: [CC BY 4.0]
 
 ## Citing
 
-See [CITATION.cff](CITATION.cff). In prose: *Smith, P. (2026). Slim Domain: A Domain-Structuring Pattern
-for .NET That Leaves Inadvertent Technical Debt Nowhere to Accrue (v1.0-rc4). Funcular Labs.*
+See [CITATION.cff](CITATION.cff). In prose: *Smith, P. (2026). Slim Domain: Debt-Proof by Design (v1.0-rc5).
+Funcular Labs.*
