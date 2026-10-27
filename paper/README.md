@@ -2,12 +2,12 @@
 
 **Slim Domain: Hostile to Technical Debt by Design**
 *A .NET domain-structuring pattern that lowers cognitive load and puts gravity beneath design discipline.*
-Paul Smith, Funcular Labs · Version 1.0, Release Candidate 7 · October 2026
+Paul Smith, Funcular Labs · Version 1.0, Release Candidate 8 · October 2026
 
 | File | Use it for |
 |---|---|
-| [`Slim_Domain_v1.0-rc7.pdf`](Slim_Domain_v1.0-rc7.pdf) | Reading. 79 pages, 22 listings, 7 tables, two appendices. |
-| [`Slim_Domain_v1.0-rc7.docx`](Slim_Domain_v1.0-rc7.docx) | Reviewing with tracked changes or comments. |
+| [`Slim_Domain_v1.0-rc8.pdf`](Slim_Domain_v1.0-rc8.pdf) | Reading. 79 pages, 22 listings, 7 tables, two appendices. |
+| [`Slim_Domain_v1.0-rc8.docx`](Slim_Domain_v1.0-rc8.docx) | Reviewing with tracked changes or comments. |
 
 The companion digest for coding agents is in [`../guidance/`](../guidance/). The companion sample solution is in
 [`../samples/Switchback/`](../samples/Switchback/).
@@ -16,23 +16,33 @@ The companion digest for coding agents is in [`../guidance/`](../guidance/). The
 
 Slim Domain is a domain-structuring pattern for .NET systems — not an application architecture and not a
 library. Relative to a disciplined service layer over Dapper or Entity Framework Core, it changes five things:
-reads are shaped to the use case rather than to the object graph; the canonical entity is the table and
-nothing more; business objects acquire the entity shape by inheriting or wrapping it inside a trust
-boundary, so in-process DTO mapping disappears except where a defined boundary warrants it; services alone
-persist, and nouns never save themselves; and recurring column groups become generator-proposed,
-human-approved interfaces that centralize cross-cutting rules such as audit stamping. Read through the lens of
-technical debt, the five changes have one effect: the common forms of inadvertent debt — over-fetching,
-parallel shapes, ambient persistence, scattered cross-cutting rules — become structurally unavailable rather
-than merely discouraged, and the interest paid on cross-cutting change is bounded by construction. It is
-intended for teams of mixed experience levels, including those common in regulated, high-security
-environments.
 
-The pattern rests on four principles: slim entities as pure data contracts; enriched business objects, via
-inheritance or composition, that acquire the persistence shape and add behavior; service-gated persistence,
-in which the services layer is the sole consumer of the data-access library; and use-case-shaped reads, in
-which every query returns a shape carrying only what the operation uses. Where a library maps only the
-intersection of columns and properties, business objects need no per-member mapping attributes even on
-writes — a convenience the pattern welcomes and does not require.
+**Five things that change on Monday**
+
+|  | A disciplined service layer over EF Core | Slim Domain |
+|---|---|---|
+| **Reads** | shaped to the object graph, however well the Includes are managed | shaped to the use case: a detail entity, a view, or a projection |
+| **Canonical entity** | the one shape every consumer adds its members to | the table, and nothing more; richer shapes live elsewhere |
+| **Business objects** | mapped to a DTO per layer, boundary or not | inherit or wrap the entity shape inside a trust boundary; DTOs only where a boundary warrants them |
+| **Persistence** | confined to handlers by discipline, yet ambient through the tracker: any mutation persists on the next SaveChanges | services only, and only what the service writes; a noun never saves itself |
+| **Cross-cutting rules** | re-stated in each service, or matched by type in an interceptor | generator-proposed, human-approved interfaces, applied in one place |
+
+Read through the lens of technical debt, the five changes have one effect: the common forms of inadvertent
+debt — over-fetching, parallel shapes, ambient persistence, scattered cross-cutting rules — become
+structurally unavailable rather than merely discouraged, and the interest paid on cross-cutting change is
+bounded by construction. It is intended for teams of mixed experience levels, including those common in
+regulated, high-security environments.
+
+The pattern rests on four principles:
+
+**The four principles**
+
+| **Slim entities**<br>pure data contracts, typically generated from the schema — the table and nothing more | **Enriched business objects**<br>the entity shape plus behavior, acquired by inheritance or composition |
+|---|---|
+| **Service-gated persistence**<br>the services layer is the sole consumer of the data-access library | **Use-case-shaped reads**<br>every query returns a shape carrying only what the operation uses |
+
+Where a library maps only the intersection of columns and properties, business objects need no per-member
+mapping attributes even on writes — a convenience the pattern welcomes and does not require.
 
 This paper defines the pattern and illustrates it with C# examples drawn from a fictitious reference
 solution, the Aegis Platform. It states what the pattern is and is not, which application architectures it
@@ -56,7 +66,7 @@ audit, and harder to violate accidentally.
 
 ## Status: release candidate, open for review
 
-The paper went public as rc1 on 2026-10-02; rc7 (2026-10-27) is the current revision. It has been through
+The paper went public as rc1 on 2026-10-02; rc8 (2026-10-27) is the current revision. It has been through
 several rounds of adversarial review by AI reviewers (the method and the disclosure are in Appendix A), and
 it has not yet been reviewed by people outside Funcular Labs. That is what this release is for.
 
@@ -84,8 +94,20 @@ Appendix A unless you ask otherwise.
 
 ## What changed since rc1
 
-rc2 and rc3 were internal revisions; rc4 through rc7 followed within two days. If you read rc1, this is what moved:
+rc2 and rc3 were internal revisions; rc4 through rc8 followed within two days. If you read rc1, this is what moved:
 
+- **The abstract's lists become pattern cards (rc8).** The two list-sentences of the abstract (the five things
+  that change, the four principles) are now two unnumbered cards on the abstract page, in the style of a design-
+  pattern catalog: *Five things that change on Monday*, a three-column table that sets each concern beside what a
+  disciplined service layer does and what Slim Domain does, and *The four principles*, a two-by-two grid. The
+  abstract above mirrors them as tables. They carry no caption, so Tables 1–7, Listings 1–22 and Figures 1–6 keep
+  their numbers. Apart from the glyph substitutions below, the body is that of rc7.
+- **No fallback fonts (rc8).** CMU Serif lacks three glyphs the prose used (≈, →, ×), which the PDF had been
+  rendering from Cambria, Cambria Math and Times New Roman. They are now spelled out ("about", "from … through …
+  to", "x"), so no visible glyph is drawn from any font but CMU Serif and Consolas. (Word's table-of-contents and
+  list furniture still embeds Aptos and Arial subsets for whitespace, as in every revision.) rc7's re-cut had
+  already replaced synthesized bold with the real CMU Serif Bold face, which is why the cover title and headings
+  now copy and search cleanly.
 - **Title, subtitle and the gravity metaphor (rc7).** The paper is now *Slim Domain: Hostile to Technical Debt by
   Design*, with the subtitle *A .NET domain-structuring pattern that lowers cognitive load and puts gravity beneath
   design discipline.* The cover carries the title and subtitle only. Three passages carry the cover's image into the
@@ -126,7 +148,8 @@ rc2 and rc3 were internal revisions; rc4 through rc7 followed within two days. I
 
 | Version | Date | Notes |
 |---|---|---|
-| 1.0-rc7 | 2026-10-27 | Title *Hostile to Technical Debt by Design* and a new subtitle; the cover's gravity metaphor carried into §1.2, §3.3 and §3.4; 79 pages. |
+| 1.0-rc8 | 2026-10-27 | The abstract's two lists become pattern cards; fallback glyphs removed so every visible glyph comes from CMU Serif or Consolas; body otherwise as rc7; 79 pages. |
+| 1.0-rc7 | 2026-10-27 | Title *Hostile to Technical Debt by Design* and a new subtitle; the cover's gravity metaphor carried into §1.2, §3.3 and §3.4; 79 pages. Superseded the same day. |
 | 1.0-rc6 | 2026-10-27 | Title *Technical Debt Has Nowhere to Grow* and a new subtitle; body identical to rc4. Superseded the same day. |
 | 1.0-rc5 | 2026-10-26 | Title *Debt-Proof by Design*; the cover drops the tagline; body identical to rc4. Superseded the same week. |
 | 1.0-rc4 | 2026-10-26 | Technical-debt lens; `[Table]` on every canonical entity; read-only markers stated precisely; FunkyORM references at 3.12.1. The rc1 files are in the repository history (commit `8141453`). |
@@ -135,7 +158,7 @@ rc2 and rc3 were internal revisions; rc4 through rc7 followed within two days. I
 ## Citing
 
 See [`../CITATION.cff`](../CITATION.cff). In prose: *Smith, P. (2026). Slim Domain: Hostile to Technical Debt
-by Design (v1.0-rc7). Funcular Labs.*
+by Design (v1.0-rc8). Funcular Labs.*
 
 ## License
 
