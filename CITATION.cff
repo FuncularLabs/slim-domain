@@ -9,7 +9,7 @@ repository-code: "https://github.com/FuncularLabs/slim-domain"
 license: MIT
 preferred-citation:
   type: report
-  title: "Slim Domain: Technical Debt Has Nowhere to Grow"
+  title: "Slim Domain: Hostile to Technical Debt by Design"
   authors:
     - family-names: Smith
       given-names: Paul
@@ -18,7 +18,7 @@ preferred-citation:
     name: Funcular Labs
   year: 2026
   month: 10
-  version: "1.0-rc6"
-  notes: "Release Candidate 6, open for peer review."
-  url: "https://github.com/FuncularLabs/slim-domain/blob/main/paper/Slim_Domain_v1.0-rc6.pdf"
+  version: "1.0-rc7"
+  notes: "Release Candidate 7, open for peer review."
+  url: "https://github.com/FuncularLabs/slim-domain/blob/main/paper/Slim_Domain_v1.0-rc7.pdf"
   license: CC-BY-4.0
