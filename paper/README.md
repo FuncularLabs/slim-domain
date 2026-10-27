@@ -1,13 +1,13 @@
 # Slim Domain — the paper
 
-**Slim Domain: Debt-Proof by Design**
-*A .NET domain pattern that cuts cognitive load and leaves technical debt nowhere to grow.*
-Paul Smith, Funcular Labs · Version 1.0, Release Candidate 5 · October 2026
+**Slim Domain: Technical Debt Has Nowhere to Grow**
+*A .NET domain-structuring pattern that cuts cognitive load and makes the correct path the easy one.*
+Paul Smith, Funcular Labs · Version 1.0, Release Candidate 6 · October 2026
 
 | File | Use it for |
 |---|---|
-| [`Slim_Domain_v1.0-rc5.pdf`](Slim_Domain_v1.0-rc5.pdf) | Reading. 78 pages, 22 listings, 7 tables, two appendices. |
-| [`Slim_Domain_v1.0-rc5.docx`](Slim_Domain_v1.0-rc5.docx) | Reviewing with tracked changes or comments. |
+| [`Slim_Domain_v1.0-rc6.pdf`](Slim_Domain_v1.0-rc6.pdf) | Reading. 78 pages, 22 listings, 7 tables, two appendices. |
+| [`Slim_Domain_v1.0-rc6.docx`](Slim_Domain_v1.0-rc6.docx) | Reviewing with tracked changes or comments. |
 
 The companion digest for coding agents is in [`../guidance/`](../guidance/). The companion sample solution is in
 [`../samples/Switchback/`](../samples/Switchback/).
@@ -56,7 +56,7 @@ audit, and harder to violate accidentally.
 
 ## Status: release candidate, open for review
 
-The paper went public as rc1 on 2026-10-02; rc5 (2026-10-26) is the current revision. It has been through
+The paper went public as rc1 on 2026-10-02; rc6 (2026-10-27) is the current revision. It has been through
 several rounds of adversarial review by AI reviewers (the method and the disclosure are in Appendix A), and
 it has not yet been reviewed by people outside Funcular Labs. That is what this release is for.
 
@@ -84,14 +84,15 @@ Appendix A unless you ask otherwise.
 
 ## What changed since rc1
 
-rc2 and rc3 were internal revisions; rc4 and rc5 were published on the same day. If you read rc1, this is what moved:
+rc2 and rc3 were internal revisions; rc4, rc5 and rc6 followed within two days. If you read rc1, this is what moved:
 
-- **Title and subtitle (rc5).** The paper is now *Slim Domain: Debt-Proof by Design*, with the subtitle *A .NET
-  domain pattern that cuts cognitive load and leaves technical debt nowhere to grow.* The cover carries the title
-  and subtitle only. The body is unchanged from rc4.
+- **Title and subtitle (rc6).** The paper is now *Slim Domain: Technical Debt Has Nowhere to Grow*, with the
+  subtitle *A .NET domain-structuring pattern that cuts cognitive load and makes the correct path the easy one.*
+  The cover carries the title and subtitle only; the body is unchanged from rc4. (rc4's subtitle, *A
+  Domain-Structuring Pattern for .NET That Leaves Inadvertent Technical Debt Nowhere to Accrue*, and rc5's title,
+  *Debt-Proof by Design*, each lasted one revision; "proof" promised more than §3.4 and §11.1 claim.)
 - **Framing (rc4).** The abstract's opening and closing paragraphs state the pattern's effect in technical-debt
-  terms. (rc4's subtitle, *A Domain-Structuring Pattern for .NET That Leaves Inadvertent Technical Debt Nowhere
-  to Accrue*, lasted one revision.)
+  terms.
 - **Technical debt as the unifying lens** (new §3.4, new Table 1). Each tenet is mapped to the debt channel it
   closes, the interest it avoids, and the Appendix B proxy that measures it, with two stated limits: the
   pattern addresses inadvertent debt, not deliberate borrowing, and prevention is claimed by construction, not
@@ -121,14 +122,15 @@ rc2 and rc3 were internal revisions; rc4 and rc5 were published on the same day.
 
 | Version | Date | Notes |
 |---|---|---|
-| 1.0-rc5 | 2026-10-26 | New title and subtitle (*Debt-Proof by Design*); the cover drops the tagline; body identical to rc4. |
+| 1.0-rc6 | 2026-10-27 | Title *Technical Debt Has Nowhere to Grow* and a new subtitle; body identical to rc4. |
+| 1.0-rc5 | 2026-10-26 | Title *Debt-Proof by Design*; the cover drops the tagline; body identical to rc4. Superseded the same week. |
 | 1.0-rc4 | 2026-10-26 | Technical-debt lens; `[Table]` on every canonical entity; read-only markers stated precisely; FunkyORM references at 3.12.1. The rc1 files are in the repository history (commit `8141453`). |
 | 1.0-rc1 | 2026-10-02 | First public release candidate. |
 
 ## Citing
 
-See [`../CITATION.cff`](../CITATION.cff). In prose: *Smith, P. (2026). Slim Domain: Debt-Proof by Design
-(v1.0-rc5). Funcular Labs.*
+See [`../CITATION.cff`](../CITATION.cff). In prose: *Smith, P. (2026). Slim Domain: Technical Debt Has Nowhere
+to Grow (v1.0-rc6). Funcular Labs.*
 
 ## License
 
