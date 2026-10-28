@@ -18,8 +18,8 @@ Format: one entry per finding, newest first, with its current status.
 - **What 3.13.0 changes** (its changelog): the audit context on a transaction FunkyORM didn't begin (issue #24).
   The sample uses no audit context and hands the provider no transaction, so nothing here exercises it.
 - **Also checked on the sample's data:** the 3.12.1 probe below, re-run against 3.13.0, gives the same answers,
-  and it now also covers `Sum`/`Min`/`Max`, `.Month`/`.Day` in `Where`, and `Contains("_")`/`Contains("[")`,
-  each equal to LINQ to objects over the same rows.
+  and it now also covers `Sum`/`Min`/`Max`, `.Month`/`.Day` in `Where`, and `Contains("_")`/`Contains("[A-Z]")`
+  (patterns that, sent unescaped, would match nearly every name), each equal to LINQ to objects over the same rows.
 
 ## 2026-10-26 — Moved to 3.12.1: verified
 
