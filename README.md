@@ -131,7 +131,7 @@ a slice to the sample and a row to its scoreboard. The labs are also the outline
 |---|---|
 | Paper | 1.0-rc8, 2026-10-27 ([what changed since rc1](paper/README.md#what-changed-since-rc1)) |
 | Agent guidance | 1.0-rc8 (matches the paper) |
-| Switchback sample | .NET 10 · EF Core 10.0.12 · FunkyORM ([`Funcular.Data.Orm`](https://www.nuget.org/packages/Funcular.Data.Orm)) 3.12.1 |
+| Switchback sample | .NET 10 · EF Core 10.0.12 · FunkyORM ([`Funcular.Data.Orm`](https://www.nuget.org/packages/Funcular.Data.Orm)) 3.13.0 |
 
 FunkyORM is the micro-ORM the sample uses for the Slim Domain side; it is [open source](https://github.com/FuncularLabs/Funcular.FunkyOrm)
 and under active development. The pattern does not depend on it: the paper shows the same habit on EF Core

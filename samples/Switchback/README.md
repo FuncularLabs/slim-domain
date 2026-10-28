@@ -171,7 +171,7 @@ else's), the sample refuses to run and says so; `reset` is the way back.
 
 ## Versions
 
-.NET 10 · EF Core 10.0.12 · FunkyORM (`Funcular.Data.Orm`) 3.12.1 · Bogus 35.6.5 · xUnit v3 · NetArchTest.
+.NET 10 · EF Core 10.0.12 · FunkyORM (`Funcular.Data.Orm`) 3.13.0 · Bogus 35.6.5 · xUnit v3 · NetArchTest.
 Package versions are pinned in `Directory.Packages.props`.
 
 FunkyORM is young and moving fast; the [FUNKYORM_FEEDBACK.md](FUNKYORM_FEEDBACK.md) file records what the

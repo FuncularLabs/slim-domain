@@ -7,11 +7,11 @@
   <ItemGroup>
     <!-- Not referenced directly. Microsoft.Data.SqlClient, through EF Core, brings 9.0.x, which CVE-2026-84008
          and CVE-2026-70162 (2026-10-13) affect; the warnings-as-errors build fails on them. 10.0.13 is the first
-         patched 10.0.x release. FunkyORM 3.12.1 declares a patched minimum itself; EF Core 10.0.12 doesn't.
+         patched 10.0.x release. FunkyORM 3.13.0 declares a patched minimum itself; EF Core 10.0.12 doesn't.
          Remove this line, and the pinning property above, once the EF Core version here brings a SqlClient that
          depends on a patched Pkcs. -->
     <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
-    <PackageVersion Include="Funcular.Data.Orm" Version="3.12.1" />
+    <PackageVersion Include="Funcular.Data.Orm" Version="3.13.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12" />
     <PackageVersion Include="Bogus" Version="35.6.5" />

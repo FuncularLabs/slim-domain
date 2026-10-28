@@ -7,6 +7,17 @@ Format: one entry per finding, newest first, with its current status.
 
 ---
 
+## 2026-10-27 — Moved to 3.13.0: verified
+
+- **Version / provider:** Funcular.Data.Orm 3.13.0 (NuGet, 2026-10-27), SQL Server (LocalDB and SQL Server 2019).
+- **Result:** the scoreboard is unchanged (36 / 5 / 8 columns, 166 tracked objects, rows `e970…1100`); all 33
+  tests pass; `dotnet list package --vulnerable --include-transitive` reports nothing (the Pkcs pin in
+  `Directory.Packages.props` stays for EF Core's SqlClient path). The FunkyORM SQL quoted in
+  `docs/before-after.md` is what 3.13.0 sends, unchanged.
+- **What 3.13.0 changes** (its changelog): the audit context on a transaction FunkyORM didn't begin (issue #24).
+  The sample uses no audit context and hands the provider no transaction, so nothing here exercises it.
+- **Also checked on the sample's data:** the 3.12.1 probe below, re-run against 3.13.0, gives the same answers.
+
 ## 2026-10-26 — Moved to 3.12.1: verified
 
 - **Version / provider:** Funcular.Data.Orm 3.12.1 (NuGet, 2026-10-26), SQL Server (LocalDB and SQL Server 2019).
@@ -22,8 +33,8 @@ Format: one entry per finding, newest first, with its current status.
 
 ## 2026-10-12 — `Generated ORDER BY clause: …` printed to stdout
 
-- **Status: fixed in 3.11.0.** Verified on the published 3.11.0, 3.12.0 and 3.12.1 packages (nothing written during a
-  query; 2026-10-26). The sample's `ConsoleNoiseFilter` was removed on 2026-10-26.
+- **Status: fixed in 3.11.0.** Verified on the published 3.11.0, 3.12.0, 3.12.1 and 3.13.0 packages (nothing written
+  during a query; 2026-10-26 and 2026-10-27). The sample's `ConsoleNoiseFilter` was removed on 2026-10-26.
 - **Version / provider:** Funcular.Data.Orm 3.10.0, SQL Server.
 - **Construct:** any ordered LINQ query, for example
   `provider.Query<RecentOrderRow>().OrderByDescending(r => r.OrderedUtc).ThenByDescending(r => r.Id).Skip(0).Take(50).ToList()`.
@@ -47,13 +58,13 @@ Format: one entry per finding, newest first, with its current status.
 
 - **Status: open.** Recorded by the maintainers as a 4.0 candidate: adding a base interface is a breaking change
   for implementers. Dependency injection disposes the concrete provider correctly.
-- **Version:** Funcular.Data.Orm 3.10.0; still true in 3.12.1.
+- **Version:** Funcular.Data.Orm 3.10.0; still true in 3.13.0.
 - **Construct:** holding a provider as `IOrmDataProvider` (the interface the services depend on) and disposing it.
 - **Expected:** `using var provider = …` compiles against the interface.
 - **Actual:** `OrmDataProvider` implements `IDisposable`, but the interface does not, so callers holding the
   interface write `(provider as IDisposable)?.Dispose()`. See `Switchback.Demo/Variants.cs`.
 
-## Constructs the sample uses that work as documented on 3.12.1
+## Constructs the sample uses that work as documented on 3.13.0
 
 - `[Table]` on classes whose names differ from the tables; column matching by convention.
 - `[RemoteLink]` on nullable and non-nullable keys; `[RemoteProperty]` one hop and two hops through a nullable key.
