@@ -2,12 +2,12 @@
 
 **Slim Domain: Hostile to Technical Debt by Design**
 *A .NET domain-structuring pattern that lowers cognitive load and puts gravity beneath design discipline.*
-Paul Smith, Funcular Labs · Version 1.0, Release Candidate 8 · October 2026
+Paul Smith, Funcular Labs · Version 1.0, Release Candidate 9 · October 2026
 
 | File | Use it for |
 |---|---|
-| [`Slim_Domain_v1.0-rc8.pdf`](Slim_Domain_v1.0-rc8.pdf) | Reading. 79 pages, 22 listings, 7 tables, two appendices. |
-| [`Slim_Domain_v1.0-rc8.docx`](Slim_Domain_v1.0-rc8.docx) | Reviewing with tracked changes or comments. |
+| [`Slim_Domain_v1.0-rc9.pdf`](Slim_Domain_v1.0-rc9.pdf) | Reading. 79 pages, 22 listings, 7 tables, two appendices. |
+| [`Slim_Domain_v1.0-rc9.docx`](Slim_Domain_v1.0-rc9.docx) | Reviewing with tracked changes or comments. |
 
 The companion digest for coding agents is in [`../guidance/`](../guidance/). The companion sample solution is in
 [`../samples/Switchback/`](../samples/Switchback/).
@@ -66,7 +66,7 @@ audit, and harder to violate accidentally.
 
 ## Status: release candidate, open for review
 
-The paper went public as rc1 on 2026-10-02; rc8 (2026-10-27) is the current revision. It has been through
+The paper went public as rc1 on 2026-10-02; rc9 (2026-10-27) is the current revision. It has been through
 several rounds of adversarial review by AI reviewers (the method and the disclosure are in Appendix A), and
 it has not yet been reviewed by people outside Funcular Labs. That is what this release is for.
 
@@ -94,8 +94,12 @@ Appendix A unless you ask otherwise.
 
 ## What changed since rc1
 
-rc2 and rc3 were internal revisions; rc4 through rc8 followed within two days. If you read rc1, this is what moved:
+rc2 and rc3 were internal revisions; rc4 through rc9 followed within two days. If you read rc1, this is what moved:
 
+- **FunkyORM references at 3.13.0 (rc9).** The §1.4 disclosure, Table 2's header, caption and footnote, §6.7 with
+  Listing 18, and §11.1 now name release 3.13.0 (October 2026), the version the Switchback sample pins. 3.13.0
+  changed only the audit context on a transaction FunkyORM didn't begin, so no Table 2 row value moves and
+  "no predicate-update primitive" still holds. Nothing else in the body changed.
 - **The abstract's lists become pattern cards (rc8).** The two list-sentences of the abstract (the five things
   that change, the four principles) are now two unnumbered cards on the abstract page, in the style of a design-
   pattern catalog: *Five things that change on Monday*, a three-column table that sets each concern beside what a
@@ -136,7 +140,7 @@ rc2 and rc3 were internal revisions; rc4 through rc8 followed within two days. I
   (`HasNoKey`) serve as a library-level read-only marker and that FunkyORM offers none at the time of writing,
   so on the attribute road the service base's runtime guard and the architecture test carry the rule. The
   guidance digest carries the same wording.
-- **FunkyORM references updated to 3.12.1** (October 2026) in the §1.4 disclosure, Table 2 and its footnote,
+- **FunkyORM references updated to 3.12.1** (October 2026; 3.13.0 since rc9) in the §1.4 disclosure, Table 2 and its footnote,
   §6.7 and Listing 18 ("3.12.1 has no predicate-update primitive" still holds; the stored-procedure
   compare-and-swap stays), §6.8 ("3.8 and later" for session-context priming), and §11.1. No Table 2 row
   values changed.
@@ -148,7 +152,8 @@ rc2 and rc3 were internal revisions; rc4 through rc8 followed within two days. I
 
 | Version | Date | Notes |
 |---|---|---|
-| 1.0-rc8 | 2026-10-27 | The abstract's two lists become pattern cards; fallback glyphs removed so every visible glyph comes from CMU Serif or Consolas; body otherwise as rc7; 79 pages. |
+| 1.0-rc9 | 2026-10-27 | FunkyORM references moved from 3.12.1 to 3.13.0 in §1.4, Table 2, §6.7 and Listing 18, and §11.1; body otherwise as rc8; 79 pages. |
+| 1.0-rc8 | 2026-10-27 | The abstract's two lists become pattern cards; fallback glyphs removed so every visible glyph comes from CMU Serif or Consolas; body otherwise as rc7; 79 pages. Superseded the same day. |
 | 1.0-rc7 | 2026-10-27 | Title *Hostile to Technical Debt by Design* and a new subtitle; the cover's gravity metaphor carried into §1.2, §3.3 and §3.4; 79 pages. Superseded the same day. |
 | 1.0-rc6 | 2026-10-27 | Title *Technical Debt Has Nowhere to Grow* and a new subtitle; body identical to rc4. Superseded the same day. |
 | 1.0-rc5 | 2026-10-26 | Title *Debt-Proof by Design*; the cover drops the tagline; body identical to rc4. Superseded the same week. |
@@ -158,7 +163,7 @@ rc2 and rc3 were internal revisions; rc4 through rc8 followed within two days. I
 ## Citing
 
 See [`../CITATION.cff`](../CITATION.cff). In prose: *Smith, P. (2026). Slim Domain: Hostile to Technical Debt
-by Design (v1.0-rc8). Funcular Labs.*
+by Design (v1.0-rc9). Funcular Labs.*
 
 ## License
 

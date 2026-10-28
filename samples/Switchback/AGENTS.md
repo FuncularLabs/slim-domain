@@ -2,7 +2,7 @@
 
 Switchback is the companion sample for the Slim Domain paper. It is an EF Core application that converts
 one feature slice (the Recent orders list) to FunkyORM the Slim Domain way, and measures the difference.
-Follow [`../../guidance/Slim_Domain_agent_guidance_v1.0-rc8.md`](../../guidance/Slim_Domain_agent_guidance_v1.0-rc8.md)
+Follow [`../../guidance/Slim_Domain_agent_guidance_v1.0-rc9.md`](../../guidance/Slim_Domain_agent_guidance_v1.0-rc9.md)
 with the settings below.
 
 ## Slim Domain §0 settings for this solution
