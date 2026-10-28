@@ -10,13 +10,16 @@ Format: one entry per finding, newest first, with its current status.
 ## 2026-10-27 — Moved to 3.13.0: verified
 
 - **Version / provider:** Funcular.Data.Orm 3.13.0 (NuGet, 2026-10-27), SQL Server (LocalDB and SQL Server 2019).
-- **Result:** the scoreboard is unchanged (36 / 5 / 8 columns, 166 tracked objects, rows `e970…1100`); all 33
-  tests pass; `dotnet list package --vulnerable --include-transitive` reports nothing (the Pkcs pin in
-  `Directory.Packages.props` stays for EF Core's SqlClient path). The FunkyORM SQL quoted in
-  `docs/before-after.md` is what 3.13.0 sends, unchanged.
+- **Result:** a warning-free Release build; the scoreboard is unchanged (36 / 5 / 8 columns, 166 tracked objects,
+  rows `e970…1100`); all 33 tests pass; `dotnet list package --vulnerable --include-transitive` reports nothing
+  (the Pkcs pin in `Directory.Packages.props` stays for EF Core's SqlClient path). The FunkyORM SQL quoted in
+  `../../docs/before-after.md` is what 3.13.0 sends, unchanged; `GET /orders/recent?page=0`, with and without
+  `country=Canada`, returns the same JSON as the 2026-10-12 capture; LAB-01's step 5 gives 13 columns, then 12.
 - **What 3.13.0 changes** (its changelog): the audit context on a transaction FunkyORM didn't begin (issue #24).
   The sample uses no audit context and hands the provider no transaction, so nothing here exercises it.
-- **Also checked on the sample's data:** the 3.12.1 probe below, re-run against 3.13.0, gives the same answers.
+- **Also checked on the sample's data:** the 3.12.1 probe below, re-run against 3.13.0, gives the same answers,
+  and it now also covers `Sum`/`Min`/`Max`, `.Month`/`.Day` in `Where`, and `Contains("_")`/`Contains("[")`,
+  each equal to LINQ to objects over the same rows.
 
 ## 2026-10-26 — Moved to 3.12.1: verified
 

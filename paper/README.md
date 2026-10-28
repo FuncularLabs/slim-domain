@@ -140,7 +140,7 @@ rc2 and rc3 were internal revisions; rc4 through rc9 followed within two days. I
   (`HasNoKey`) serve as a library-level read-only marker and that FunkyORM offers none at the time of writing,
   so on the attribute road the service base's runtime guard and the architecture test carry the rule. The
   guidance digest carries the same wording.
-- **FunkyORM references updated to 3.12.1** (October 2026; 3.13.0 since rc9) in the §1.4 disclosure, Table 2 and its footnote,
+- **FunkyORM references updated to 3.12.1** (October 2026) in the §1.4 disclosure, Table 2 and its footnote,
   §6.7 and Listing 18 ("3.12.1 has no predicate-update primitive" still holds; the stored-procedure
   compare-and-swap stays), §6.8 ("3.8 and later" for session-context priming), and §11.1. No Table 2 row
   values changed.
